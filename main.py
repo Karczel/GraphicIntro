@@ -38,12 +38,15 @@ label = tk.Label(root, text="Your name?")
 namefield = tk.Entry(root, width=20)
 greet_button = tk.Button(root, text="Greet me",command=greet_handler)
 
+Layout = 'grid'
+
 padding = {'padx': 5, 'pady': 5}
 
 """cannot use at the same time as pack"""
-label.grid(row=0, column=0,**padding)
-namefield.grid(row=0, column=1, **padding)
-greet_button.grid(row=0, column=2)
+if Layout == 'grid':
+    label.grid(row=0, column=0, **padding)
+    namefield.grid(row=0, column=1, **padding)
+    greet_button.grid(row=0, column=2)
 
 namefield.bind('<Return>', greet_handler)
 namefield['foreground'] = 'blue'
@@ -54,9 +57,10 @@ label.configure(**options)
 greet_button.configure(**options)
 
 """cannot use at the same time as grid"""
-# label.pack(side=tk.LEFT,**padding)
-# namefield.pack(side=tk.LEFT, **padding, expand=True, fill=tk.X)
-# greet_button.pack(side=tk.RIGHT, **padding)
+if Layout == 'pack':
+    label.pack(side=tk.LEFT, **padding)
+    namefield.pack(side=tk.LEFT, **padding, expand=True, fill=tk.X)
+    greet_button.pack(side=tk.RIGHT, **padding)
 
 root.columnconfigure(1,weight=1)
 namefield.grid(sticky=tk.EW) #EW = east-west sides
