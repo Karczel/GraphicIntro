@@ -27,6 +27,9 @@ class GreeterApp(tk.Tk):
             namefield.grid(row=0, column=1, **padding)
             greet_button.grid(row=0, column=2)
 
+            self.columnconfigure(1, weight=1)
+            namefield.grid(sticky=tk.EW)  # EW = east-west sides
+
         namefield.bind('<Return>', self.greet_handler)
         namefield['foreground'] = 'blue'
         namefield['font'] = ('Monospace', 16)
@@ -40,9 +43,6 @@ class GreeterApp(tk.Tk):
             label.pack(side=tk.LEFT, **padding)
             namefield.pack(side=tk.LEFT, **padding, expand=True, fill=tk.X)
             greet_button.pack(side=tk.RIGHT, **padding)
-
-        self.columnconfigure(1, weight=1)
-        namefield.grid(sticky=tk.EW)  # EW = east-west sides
 
         self.mainloop()
 
